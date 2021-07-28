@@ -1,23 +1,14 @@
 package com.example.hooklogin;
 
-import android.app.Activity;
 import android.content.ContentResolver;
-import android.content.Context;
 import android.location.LocationManager;
 import android.util.Log;
-import android.widget.AutoCompleteTextView;
-import android.widget.EditText;
-import android.widget.Toast;
-
-import java.lang.reflect.Field;
 
 import de.robv.android.xposed.IXposedHookLoadPackage;
 import de.robv.android.xposed.XC_MethodHook;
 import de.robv.android.xposed.XposedBridge;
 import de.robv.android.xposed.XposedHelpers;
 import de.robv.android.xposed.callbacks.XC_LoadPackage;
-
-import static de.robv.android.xposed.XposedHelpers.findField;
 
 public class HookLogin implements IXposedHookLoadPackage {
     private static final String TAG = "HookLogin";
@@ -74,24 +65,24 @@ public class HookLogin implements IXposedHookLoadPackage {
                     }
                 }
         );
-            XposedHelpers.findAndHookMethod(
-                    android.telephony.TelephonyManager.class.getName(),
-                    lpparam.classLoader,
-                    "getDeviceId",
-                    int.class,
-                    new XC_MethodHook() {
-                        @Override
-                        protected void beforeHookedMethod(MethodHookParam param) {
-                            XposedBridge.log("调用getDeviceId(int)获取了imei");
-                        }
-
-                        @Override
-                        protected void afterHookedMethod(MethodHookParam param) throws Throwable {
-                            XposedBridge.log(getMethodStack());
-                            super.afterHookedMethod(param);
-                        }
+        XposedHelpers.findAndHookMethod(
+                android.telephony.TelephonyManager.class.getName(),
+                lpparam.classLoader,
+                "getDeviceId",
+                int.class,
+                new XC_MethodHook() {
+                    @Override
+                    protected void beforeHookedMethod(MethodHookParam param) {
+                        XposedBridge.log("调用getDeviceId(int)获取了imei");
                     }
-            );
+
+                    @Override
+                    protected void afterHookedMethod(MethodHookParam param) throws Throwable {
+                        XposedBridge.log(getMethodStack());
+                        super.afterHookedMethod(param);
+                    }
+                }
+        );
 
 //            XposedHelpers.findAndHookMethod(
 //                    "com.android.internal.telephony.PhoneSubInfo",
@@ -105,99 +96,253 @@ public class HookLogin implements IXposedHookLoadPackage {
 //                    }
 //            );
 
-            XposedHelpers.findAndHookMethod(
-                    android.telephony.TelephonyManager.class.getName(),
-                    lpparam.classLoader,
-                    "getSubscriberId",
-                    int.class,
-                    new XC_MethodHook() {
-                        @Override
-                        protected void beforeHookedMethod(MethodHookParam param) {
-                            XposedBridge.log("调用getSubscriberId获取了imsi");
-                        }
-
-                        @Override
-                        protected void afterHookedMethod(MethodHookParam param) throws Throwable {
-                            XposedBridge.log(getMethodStack());
-                            super.afterHookedMethod(param);
-                        }
+        XposedHelpers.findAndHookMethod(
+                android.telephony.TelephonyManager.class.getName(),
+                lpparam.classLoader,
+                "getSubscriberId",
+                int.class,
+                new XC_MethodHook() {
+                    @Override
+                    protected void beforeHookedMethod(MethodHookParam param) {
+                        XposedBridge.log("调用getSubscriberId获取了imsi");
                     }
-            );
 
-            XposedHelpers.findAndHookMethod(
-                    android.net.wifi.WifiInfo.class.getName(),
-                    lpparam.classLoader,
-                    "getMacAddress",
-                    new XC_MethodHook() {
-                        @Override
-                        protected void beforeHookedMethod(MethodHookParam param) {
-                            XposedBridge.log("调用getMacAddress()获取了mac地址");
-                        }
-
-                        @Override
-                        protected void afterHookedMethod(MethodHookParam param) throws Throwable {
-                            XposedBridge.log(getMethodStack());
-                            super.afterHookedMethod(param);
-                        }
+                    @Override
+                    protected void afterHookedMethod(MethodHookParam param) throws Throwable {
+                        XposedBridge.log(getMethodStack());
+                        super.afterHookedMethod(param);
                     }
-            );
+                }
+        );
 
-            XposedHelpers.findAndHookMethod(
-                    java.net.NetworkInterface.class.getName(),
-                    lpparam.classLoader,
-                    "getHardwareAddress",
-                    new XC_MethodHook() {
-                        @Override
-                        protected void beforeHookedMethod(MethodHookParam param) {
-                            XposedBridge.log("调用getHardwareAddress()获取了mac地址");
-                        }
-
-                        @Override
-                        protected void afterHookedMethod(MethodHookParam param) throws Throwable {
-                            XposedBridge.log(getMethodStack());
-                            super.afterHookedMethod(param);
-                        }
+        XposedHelpers.findAndHookMethod(
+                android.net.wifi.WifiInfo.class.getName(),
+                lpparam.classLoader,
+                "getMacAddress",
+                new XC_MethodHook() {
+                    @Override
+                    protected void beforeHookedMethod(MethodHookParam param) {
+                        XposedBridge.log("调用getMacAddress()获取了mac地址");
                     }
-            );
 
-            XposedHelpers.findAndHookMethod(
-                    android.provider.Settings.Secure.class.getName(),
-                    lpparam.classLoader,
-                    "getString",
-                    ContentResolver.class,
-                    String.class,
-                    new XC_MethodHook() {
-                        @Override
-                        protected void beforeHookedMethod(MethodHookParam param) {
-                            XposedBridge.log("调用Settings.Secure.getstring获取了"+ param.args[1]);
-                        }
-
-                        @Override
-                        protected void afterHookedMethod(MethodHookParam param) throws Throwable {
-                            XposedBridge.log(getMethodStack());
-                            super.afterHookedMethod(param);
-                        }
+                    @Override
+                    protected void afterHookedMethod(MethodHookParam param) throws Throwable {
+                        XposedBridge.log(getMethodStack());
+                        super.afterHookedMethod(param);
                     }
-            );
+                }
+        );
 
-            XposedHelpers.findAndHookMethod(
-                    LocationManager.class.getName(),
-                    lpparam.classLoader,
-                    "getLastKnownLocation",
-                    String.class,
-                    new XC_MethodHook() {
-                        @Override
-                        protected void beforeHookedMethod(MethodHookParam param) {
-                            XposedBridge.log("调用getLastKnownLocation获取了GPS地址");
-                        }
-
-                        @Override
-                        protected void afterHookedMethod(MethodHookParam param) throws Throwable {
-                            XposedBridge.log(getMethodStack());
-                            super.afterHookedMethod(param);
-                        }
+        XposedHelpers.findAndHookMethod(
+                java.net.NetworkInterface.class.getName(),
+                lpparam.classLoader,
+                "getHardwareAddress",
+                new XC_MethodHook() {
+                    @Override
+                    protected void beforeHookedMethod(MethodHookParam param) {
+                        XposedBridge.log("调用getHardwareAddress()获取了mac地址");
                     }
-            );
+
+                    @Override
+                    protected void afterHookedMethod(MethodHookParam param) throws Throwable {
+                        XposedBridge.log(getMethodStack());
+                        super.afterHookedMethod(param);
+                    }
+                }
+        );
+
+        XposedHelpers.findAndHookMethod(
+                android.provider.Settings.Secure.class.getName(),
+                lpparam.classLoader,
+                "getStringForUser",
+                ContentResolver.class,
+                String.class,
+                int.class,
+                new XC_MethodHook() {
+                    @Override
+                    protected void beforeHookedMethod(MethodHookParam param) {
+                        XposedBridge.log("调用Settings.Secure.getStringForUser获取了" + param.args[1]);
+                    }
+
+                    @Override
+                    protected void afterHookedMethod(MethodHookParam param) throws Throwable {
+                        XposedBridge.log(getMethodStack());
+                        super.afterHookedMethod(param);
+                    }
+                }
+        );
+
+        XposedHelpers.findAndHookMethod(
+                android.provider.Settings.Secure.class.getName(),
+                lpparam.classLoader,
+                "getString",
+                ContentResolver.class,
+                String.class,
+                new XC_MethodHook() {
+                    @Override
+                    protected void beforeHookedMethod(MethodHookParam param) {
+                        XposedBridge.log("调用Settings.Secure.getString获取了" + param.args[1]);
+                    }
+
+                    @Override
+                    protected void afterHookedMethod(MethodHookParam param) throws Throwable {
+                        XposedBridge.log(getMethodStack());
+                        super.afterHookedMethod(param);
+                    }
+                }
+        );
+
+        XposedHelpers.findAndHookMethod(
+                LocationManager.class.getName(),
+                lpparam.classLoader,
+                "getLastKnownLocation",
+                String.class,
+                new XC_MethodHook() {
+                    @Override
+                    protected void beforeHookedMethod(MethodHookParam param) {
+                        XposedBridge.log("调用getLastKnownLocation获取了GPS地址");
+                    }
+
+                    @Override
+                    protected void afterHookedMethod(MethodHookParam param) throws Throwable {
+                        XposedBridge.log(getMethodStack());
+                        super.afterHookedMethod(param);
+                    }
+                }
+        );
+
+        XposedHelpers.findAndHookMethod(
+                "android.app.ApplicationPackageManager",
+                lpparam.classLoader,
+                "getInstalledApplications",
+                int.class,
+                new XC_MethodHook() {
+                    @Override
+                    protected void beforeHookedMethod(MethodHookParam param) {
+                        XposedBridge.log("调用getInstalledApplications获取了应用列表");
+                    }
+
+                    @Override
+                    protected void afterHookedMethod(MethodHookParam param) throws Throwable {
+                        XposedBridge.log(getMethodStack());
+                        super.afterHookedMethod(param);
+                    }
+                }
+        );
+
+        XposedHelpers.findAndHookMethod(
+                "android.app.ApplicationPackageManager",
+                lpparam.classLoader,
+                "getInstalledApplicationsAsUser",
+                int.class,
+                int.class,
+                new XC_MethodHook() {
+                    @Override
+                    protected void beforeHookedMethod(MethodHookParam param) {
+                        XposedBridge.log("调用getInstalledApplicationsAsUser获取了应用列表");
+                    }
+
+                    @Override
+                    protected void afterHookedMethod(MethodHookParam param) throws Throwable {
+                        XposedBridge.log(getMethodStack());
+                        super.afterHookedMethod(param);
+                    }
+                }
+        );
+
+
+        XposedHelpers.findAndHookMethod(
+                "android.app.ApplicationPackageManager",
+                lpparam.classLoader,
+                "getInstalledPackages",
+                int.class,
+                new XC_MethodHook() {
+                    @Override
+                    protected void beforeHookedMethod(MethodHookParam param) {
+                        XposedBridge.log("调用getInstalledPackages获取了应用列表");
+                    }
+
+                    @Override
+                    protected void afterHookedMethod(MethodHookParam param) throws Throwable {
+                        XposedBridge.log(getMethodStack());
+                        super.afterHookedMethod(param);
+                    }
+                }
+        );
+
+        XposedHelpers.findAndHookMethod(
+                "android.app.ApplicationPackageManager",
+                lpparam.classLoader,
+                "getInstalledPackagesAsUser",
+                int.class,
+                int.class,
+                new XC_MethodHook() {
+                    @Override
+                    protected void beforeHookedMethod(MethodHookParam param) {
+                        XposedBridge.log("调用getInstalledPackagesAsUser获取了应用列表");
+                    }
+
+                    @Override
+                    protected void afterHookedMethod(MethodHookParam param) throws Throwable {
+                        XposedBridge.log(getMethodStack());
+                        super.afterHookedMethod(param);
+                    }
+                }
+        );
+
+        XposedHelpers.findAndHookMethod(
+                "android.app.ApplicationPackageManager",
+                lpparam.classLoader,
+                "isInstantApp",
+                new XC_MethodHook() {
+                    @Override
+                    protected void beforeHookedMethod(MethodHookParam param) {
+                        XposedBridge.log("调用了isInstantApp");
+                    }
+
+                    @Override
+                    protected void afterHookedMethod(MethodHookParam param) throws Throwable {
+                        XposedBridge.log(getMethodStack());
+                        super.afterHookedMethod(param);
+                    }
+                }
+        );
+
+        XposedHelpers.findAndHookMethod(
+                "android.app.ApplicationPackageManager",
+                lpparam.classLoader,
+                "getInstantApps",
+                new XC_MethodHook() {
+                    @Override
+                    protected void beforeHookedMethod(MethodHookParam param) {
+                        XposedBridge.log("调用了getInstantApps");
+                    }
+
+                    @Override
+                    protected void afterHookedMethod(MethodHookParam param) throws Throwable {
+                        XposedBridge.log(getMethodStack());
+                        super.afterHookedMethod(param);
+                    }
+                }
+        );
+
+        XposedHelpers.findAndHookMethod(
+                "android.app.ActivityManager",
+                lpparam.classLoader,
+                "getRunningAppProcesses",
+                new XC_MethodHook() {
+                    @Override
+                    protected void beforeHookedMethod(MethodHookParam param) {
+                        XposedBridge.log("调用getRunningAppProcesses获取了应用列表");
+                    }
+
+                    @Override
+                    protected void afterHookedMethod(MethodHookParam param) throws Throwable {
+                        XposedBridge.log(getMethodStack());
+                        super.afterHookedMethod(param);
+                    }
+                }
+        );
     }
 
     private String getMethodStack() {
@@ -206,18 +351,9 @@ public class HookLogin implements IXposedHookLoadPackage {
         StringBuilder stringBuilder = new StringBuilder();
 
         for (StackTraceElement temp : stackTraceElements) {
-            stringBuilder.append(temp.toString() + "\n");
+            stringBuilder.append(temp.toString()).append("\n");
         }
 
         return stringBuilder.toString();
-
-//        try
-//        {
-//            throw new NullPointerException();
-//        }
-//        catch (Exception ex)
-//        {
-//            return Log.getStackTraceString(ex);
-//        }
     }
 }
