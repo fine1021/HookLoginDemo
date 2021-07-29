@@ -56,11 +56,11 @@ public class HookLogin implements IXposedHookLoadPackage {
                     @Override
                     protected void beforeHookedMethod(MethodHookParam param) {
                         XposedBridge.log("调用getDeviceId()获取了imei");
-                        XposedBridge.log("调用进程名 processName = " + lpparam.processName);
                     }
 
                     @Override
                     protected void afterHookedMethod(MethodHookParam param) throws Throwable {
+                        XposedBridge.log("调用getDeviceId()获取了imei完成 " + lpparam.processName);
                         XposedBridge.log(getMethodStack());
                         super.afterHookedMethod(param);
                     }
@@ -75,11 +75,11 @@ public class HookLogin implements IXposedHookLoadPackage {
                     @Override
                     protected void beforeHookedMethod(MethodHookParam param) {
                         XposedBridge.log("调用getDeviceId(int)获取了imei");
-                        XposedBridge.log("调用进程名 processName = " + lpparam.processName);
                     }
 
                     @Override
                     protected void afterHookedMethod(MethodHookParam param) throws Throwable {
+                        XposedBridge.log("调用getDeviceId(int)获取了imei完成 " + lpparam.processName);
                         XposedBridge.log(getMethodStack());
                         super.afterHookedMethod(param);
                     }
@@ -107,11 +107,11 @@ public class HookLogin implements IXposedHookLoadPackage {
                     @Override
                     protected void beforeHookedMethod(MethodHookParam param) {
                         XposedBridge.log("调用getSubscriberId获取了imsi");
-                        XposedBridge.log("调用进程名 processName = " + lpparam.processName);
                     }
 
                     @Override
                     protected void afterHookedMethod(MethodHookParam param) throws Throwable {
+                        XposedBridge.log("调用getSubscriberId获取了imsi完成 " + lpparam.processName);
                         XposedBridge.log(getMethodStack());
                         super.afterHookedMethod(param);
                     }
@@ -126,11 +126,11 @@ public class HookLogin implements IXposedHookLoadPackage {
                     @Override
                     protected void beforeHookedMethod(MethodHookParam param) {
                         XposedBridge.log("调用getMacAddress()获取了mac地址");
-                        XposedBridge.log("调用进程名 processName = " + lpparam.processName);
                     }
 
                     @Override
                     protected void afterHookedMethod(MethodHookParam param) throws Throwable {
+                        XposedBridge.log("调用getMacAddress()获取了mac地址完成 " + lpparam.processName);
                         XposedBridge.log(getMethodStack());
                         super.afterHookedMethod(param);
                     }
@@ -145,11 +145,11 @@ public class HookLogin implements IXposedHookLoadPackage {
                     @Override
                     protected void beforeHookedMethod(MethodHookParam param) {
                         XposedBridge.log("调用getHardwareAddress()获取了mac地址");
-                        XposedBridge.log("调用进程名 processName = " + lpparam.processName);
                     }
 
                     @Override
                     protected void afterHookedMethod(MethodHookParam param) throws Throwable {
+                        XposedBridge.log("调用getHardwareAddress()获取了mac地址完成 " + lpparam.processName);
                         XposedBridge.log(getMethodStack());
                         super.afterHookedMethod(param);
                     }
@@ -167,11 +167,11 @@ public class HookLogin implements IXposedHookLoadPackage {
                     @Override
                     protected void beforeHookedMethod(MethodHookParam param) {
                         XposedBridge.log("调用Settings.Secure.getStringForUser获取了" + param.args[1]);
-                        XposedBridge.log("调用进程名 processName = " + lpparam.processName);
                     }
 
                     @Override
                     protected void afterHookedMethod(MethodHookParam param) throws Throwable {
+                        XposedBridge.log("调用Settings.Secure.getStringForUser获取了" + param.args[1] + "完成 " + lpparam.processName);
                         XposedBridge.log(getMethodStack());
                         super.afterHookedMethod(param);
                     }
@@ -189,11 +189,11 @@ public class HookLogin implements IXposedHookLoadPackage {
 //                    @Override
 //                    protected void beforeHookedMethod(MethodHookParam param) {
 //                        XposedBridge.log("调用Settings.Secure.getString获取了" + param.args[1]);
-//                        XposedBridge.log("调用进程名 processName = " + lpparam.processName);
 //                    }
 //
 //                    @Override
 //                    protected void afterHookedMethod(MethodHookParam param) throws Throwable {
+//                        XposedBridge.log("调用Settings.Secure.getString获取了" + param.args[1] + "完成 " + lpparam.processName);
 //                        XposedBridge.log(getMethodStack());
 //                        super.afterHookedMethod(param);
 //                    }
@@ -209,11 +209,11 @@ public class HookLogin implements IXposedHookLoadPackage {
                     @Override
                     protected void beforeHookedMethod(MethodHookParam param) {
                         XposedBridge.log("调用getLastKnownLocation获取了GPS地址");
-                        XposedBridge.log("调用进程名 processName = " + lpparam.processName);
                     }
 
                     @Override
                     protected void afterHookedMethod(MethodHookParam param) throws Throwable {
+                        XposedBridge.log("调用getLastKnownLocation获取了GPS地址完成 " + lpparam.processName);
                         XposedBridge.log(getMethodStack());
                         super.afterHookedMethod(param);
                     }
@@ -229,11 +229,11 @@ public class HookLogin implements IXposedHookLoadPackage {
                     @Override
                     protected void beforeHookedMethod(MethodHookParam param) {
                         XposedBridge.log("调用getInstalledApplications获取了应用安装列表");
-                        XposedBridge.log("调用进程名 processName = " + lpparam.processName);
                     }
 
                     @Override
                     protected void afterHookedMethod(MethodHookParam param) throws Throwable {
+                        XposedBridge.log("调用getInstalledApplications获取了应用安装列表完成 " + lpparam.processName);
                         XposedBridge.log(getMethodStack());
                         super.afterHookedMethod(param);
                     }
@@ -249,12 +249,12 @@ public class HookLogin implements IXposedHookLoadPackage {
 //                new XC_MethodHook() {
 //                    @Override
 //                    protected void beforeHookedMethod(MethodHookParam param) {
-//                        XposedBridge.log("调用getInstalledApplicationsAsUser获取了应用列表");
-//                        XposedBridge.log("调用进程名 processName = " + lpparam.processName);
+//                        XposedBridge.log("调用getInstalledApplicationsAsUser获取了应用安装列表");
 //                    }
 //
 //                    @Override
 //                    protected void afterHookedMethod(MethodHookParam param) throws Throwable {
+//                        XposedBridge.log("调用getInstalledApplicationsAsUser获取了应用安装列表完成 " + lpparam.processName);
 //                        XposedBridge.log(getMethodStack());
 //                        super.afterHookedMethod(param);
 //                    }
@@ -271,11 +271,11 @@ public class HookLogin implements IXposedHookLoadPackage {
                     @Override
                     protected void beforeHookedMethod(MethodHookParam param) {
                         XposedBridge.log("调用getInstalledPackages获取了应用安装列表");
-                        XposedBridge.log("调用进程名 processName = " + lpparam.processName);
                     }
 
                     @Override
                     protected void afterHookedMethod(MethodHookParam param) throws Throwable {
+                        XposedBridge.log("调用getInstalledPackages获取了应用安装列表完成 " + lpparam.processName);
                         XposedBridge.log(getMethodStack());
                         super.afterHookedMethod(param);
                     }
@@ -292,11 +292,11 @@ public class HookLogin implements IXposedHookLoadPackage {
 //                    @Override
 //                    protected void beforeHookedMethod(MethodHookParam param) {
 //                        XposedBridge.log("调用getInstalledPackagesAsUser获取了应用安装列表");
-//                        XposedBridge.log("调用进程名 processName = " + lpparam.processName);
 //                    }
 //
 //                    @Override
 //                    protected void afterHookedMethod(MethodHookParam param) throws Throwable {
+//                        XposedBridge.log("调用getInstalledPackagesAsUser获取了应用安装列表完成 " + lpparam.processName);
 //                        XposedBridge.log(getMethodStack());
 //                        super.afterHookedMethod(param);
 //                    }
@@ -311,11 +311,11 @@ public class HookLogin implements IXposedHookLoadPackage {
                     @Override
                     protected void beforeHookedMethod(MethodHookParam param) {
                         XposedBridge.log("调用了isInstantApp");
-                        XposedBridge.log("调用进程名 processName = " + lpparam.processName);
                     }
 
                     @Override
                     protected void afterHookedMethod(MethodHookParam param) throws Throwable {
+                        XposedBridge.log("调用了isInstantApp完成 " + lpparam.processName);
                         XposedBridge.log(getMethodStack());
                         super.afterHookedMethod(param);
                     }
@@ -330,11 +330,11 @@ public class HookLogin implements IXposedHookLoadPackage {
                     @Override
                     protected void beforeHookedMethod(MethodHookParam param) {
                         XposedBridge.log("调用了getInstantApps");
-                        XposedBridge.log("调用进程名 processName = " + lpparam.processName);
                     }
 
                     @Override
                     protected void afterHookedMethod(MethodHookParam param) throws Throwable {
+                        XposedBridge.log("调用了getInstantApps完成 " + lpparam.processName);
                         XposedBridge.log(getMethodStack());
                         super.afterHookedMethod(param);
                     }
@@ -349,11 +349,11 @@ public class HookLogin implements IXposedHookLoadPackage {
                     @Override
                     protected void beforeHookedMethod(MethodHookParam param) {
                         XposedBridge.log("调用getRunningAppProcesses获取了应用运行列表");
-                        XposedBridge.log("调用进程名 processName = " + lpparam.processName);
                     }
 
                     @Override
                     protected void afterHookedMethod(MethodHookParam param) throws Throwable {
+                        XposedBridge.log("调用getRunningAppProcesses获取了应用运行列表完成  " + lpparam.processName);
                         XposedBridge.log(getMethodStack());
                         super.afterHookedMethod(param);
                     }
