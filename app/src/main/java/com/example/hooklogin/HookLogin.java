@@ -60,6 +60,7 @@ public class HookLogin implements IXposedHookLoadPackage {
 
                     @Override
                     protected void afterHookedMethod(MethodHookParam param) throws Throwable {
+                        XposedBridge.log("调用getDeviceId()获取了imei-------------->完成");
                         XposedBridge.log(getMethodStack());
                         super.afterHookedMethod(param);
                     }
@@ -78,6 +79,7 @@ public class HookLogin implements IXposedHookLoadPackage {
 
                     @Override
                     protected void afterHookedMethod(MethodHookParam param) throws Throwable {
+                        XposedBridge.log("调用getDeviceId(int)获取了imei-------------->完成");
                         XposedBridge.log(getMethodStack());
                         super.afterHookedMethod(param);
                     }
@@ -109,6 +111,7 @@ public class HookLogin implements IXposedHookLoadPackage {
 
                     @Override
                     protected void afterHookedMethod(MethodHookParam param) throws Throwable {
+                        XposedBridge.log("调用getSubscriberId获取了imsi-------------->完成");
                         XposedBridge.log(getMethodStack());
                         super.afterHookedMethod(param);
                     }
@@ -127,6 +130,7 @@ public class HookLogin implements IXposedHookLoadPackage {
 
                     @Override
                     protected void afterHookedMethod(MethodHookParam param) throws Throwable {
+                        XposedBridge.log("调用getMacAddress()获取了mac地址-------------->完成");
                         XposedBridge.log(getMethodStack());
                         super.afterHookedMethod(param);
                     }
@@ -145,6 +149,7 @@ public class HookLogin implements IXposedHookLoadPackage {
 
                     @Override
                     protected void afterHookedMethod(MethodHookParam param) throws Throwable {
+                        XposedBridge.log("调用getHardwareAddress()获取了mac地址-------------->完成");
                         XposedBridge.log(getMethodStack());
                         super.afterHookedMethod(param);
                     }
@@ -166,6 +171,7 @@ public class HookLogin implements IXposedHookLoadPackage {
 
                     @Override
                     protected void afterHookedMethod(MethodHookParam param) throws Throwable {
+                        XposedBridge.log("调用Settings.Secure.getStringForUser获取了" + param.args[1] + "-------------->完成");
                         XposedBridge.log(getMethodStack());
                         super.afterHookedMethod(param);
                     }
@@ -186,6 +192,7 @@ public class HookLogin implements IXposedHookLoadPackage {
 
                     @Override
                     protected void afterHookedMethod(MethodHookParam param) throws Throwable {
+                        XposedBridge.log("调用Settings.Secure.getString获取了" + param.args[1] + "-------------->完成");
                         XposedBridge.log(getMethodStack());
                         super.afterHookedMethod(param);
                     }
@@ -205,6 +212,7 @@ public class HookLogin implements IXposedHookLoadPackage {
 
                     @Override
                     protected void afterHookedMethod(MethodHookParam param) throws Throwable {
+                        XposedBridge.log("调用getLastKnownLocation获取了GPS地址-------------->完成");
                         XposedBridge.log(getMethodStack());
                         super.afterHookedMethod(param);
                     }
@@ -224,6 +232,7 @@ public class HookLogin implements IXposedHookLoadPackage {
 
                     @Override
                     protected void afterHookedMethod(MethodHookParam param) throws Throwable {
+                        XposedBridge.log("调用getInstalledApplications获取了应用列表-------------->完成");
                         XposedBridge.log(getMethodStack());
                         super.afterHookedMethod(param);
                     }
@@ -244,6 +253,7 @@ public class HookLogin implements IXposedHookLoadPackage {
 
                     @Override
                     protected void afterHookedMethod(MethodHookParam param) throws Throwable {
+                        XposedBridge.log("调用getInstalledApplicationsAsUser获取了应用列表-------------->完成");
                         XposedBridge.log(getMethodStack());
                         super.afterHookedMethod(param);
                     }
@@ -264,6 +274,7 @@ public class HookLogin implements IXposedHookLoadPackage {
 
                     @Override
                     protected void afterHookedMethod(MethodHookParam param) throws Throwable {
+                        XposedBridge.log("调用getInstalledPackages获取了应用列表-------------->完成");
                         XposedBridge.log(getMethodStack());
                         super.afterHookedMethod(param);
                     }
@@ -284,6 +295,7 @@ public class HookLogin implements IXposedHookLoadPackage {
 
                     @Override
                     protected void afterHookedMethod(MethodHookParam param) throws Throwable {
+                        XposedBridge.log("调用getInstalledPackagesAsUser获取了应用列表-------------->完成");
                         XposedBridge.log(getMethodStack());
                         super.afterHookedMethod(param);
                     }
@@ -302,6 +314,7 @@ public class HookLogin implements IXposedHookLoadPackage {
 
                     @Override
                     protected void afterHookedMethod(MethodHookParam param) throws Throwable {
+                        XposedBridge.log("调用了isInstantApp-------------->完成");
                         XposedBridge.log(getMethodStack());
                         super.afterHookedMethod(param);
                     }
@@ -320,6 +333,7 @@ public class HookLogin implements IXposedHookLoadPackage {
 
                     @Override
                     protected void afterHookedMethod(MethodHookParam param) throws Throwable {
+                        XposedBridge.log("调用了getInstantApps-------------->完成");
                         XposedBridge.log(getMethodStack());
                         super.afterHookedMethod(param);
                     }
@@ -338,6 +352,7 @@ public class HookLogin implements IXposedHookLoadPackage {
 
                     @Override
                     protected void afterHookedMethod(MethodHookParam param) throws Throwable {
+                        XposedBridge.log("调用getRunningAppProcesses获取了应用列表-------------->完成");
                         XposedBridge.log(getMethodStack());
                         super.afterHookedMethod(param);
                     }
