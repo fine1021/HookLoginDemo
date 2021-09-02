@@ -1,5 +1,6 @@
 package com.example.hooklogin;
 
+import android.content.ClipboardManager;
 import android.content.ContentResolver;
 import android.location.LocationManager;
 import android.util.Log;
@@ -354,6 +355,45 @@ public class HookLogin implements IXposedHookLoadPackage {
                     @Override
                     protected void afterHookedMethod(MethodHookParam param) throws Throwable {
                         XposedBridge.log("调用getRunningAppProcesses获取了应用运行列表完成  " + lpparam.processName);
+                        XposedBridge.log(getMethodStack());
+                        super.afterHookedMethod(param);
+                    }
+                }
+        );
+
+        XposedHelpers.findAndHookMethod(
+                android.content.ClipboardManager.class.getName(),
+                lpparam.classLoader,
+                "getPrimaryClip",
+                new XC_MethodHook() {
+                    @Override
+                    protected void beforeHookedMethod(MethodHookParam param) {
+                        XposedBridge.log("调用getPrimaryClip获取了剪切板信息");
+                    }
+
+                    @Override
+                    protected void afterHookedMethod(MethodHookParam param) throws Throwable {
+                        XposedBridge.log("调用getPrimaryClip获取了剪切板信息完成 " + lpparam.processName);
+                        XposedBridge.log(getMethodStack());
+                        super.afterHookedMethod(param);
+                    }
+                }
+        );
+
+        XposedHelpers.findAndHookMethod(
+                android.content.ClipboardManager.class.getName(),
+                lpparam.classLoader,
+                "addPrimaryClipChangedListener",
+                ClipboardManager.OnPrimaryClipChangedListener.class,
+                new XC_MethodHook() {
+                    @Override
+                    protected void beforeHookedMethod(MethodHookParam param) {
+                        XposedBridge.log("调用addPrimaryClipChangedListener监听了剪切板信息");
+                    }
+
+                    @Override
+                    protected void afterHookedMethod(MethodHookParam param) throws Throwable {
+                        XposedBridge.log("调用addPrimaryClipChangedListener监听了剪切板信息完成 " + lpparam.processName);
                         XposedBridge.log(getMethodStack());
                         super.afterHookedMethod(param);
                     }
