@@ -1,3 +1,21 @@
 <resources>
     <string name="app_name">Hooklogin</string>
+    <string-array name="hook_method">
+        <item>TelephonyManager.getDeviceId()</item>
+        <item>TelephonyManager.getDeviceId(int)</item>
+        <item>TelephonyManager.getImei(int)</item>
+        <item>TelephonyManager.getMeid(int)</item>
+        <item>TelephonyManager.getSubscriberId(int)</item>
+        <item>WifiInfo.getMacAddress()</item>
+        <item>NetworkInterface.getHardwareAddress()</item>
+        <item>Secure.getStringForUser(ContentResolver,String,int)</item>
+        <item>LocationManager.getLastKnownLocation()</item>
+        <item>PackageManager.getInstalledApplications()</item>
+        <item>PackageManager.getInstalledPackages()</item>
+        <item>PackageManager.isInstantApp()</item>
+        <item>PackageManager.getInstantApps()</item>
+        <item>ActivityManager.getRunningAppProcesses()</item>
+        <item>ClipboardManager.getPrimaryClip()</item>
+        <item>ClipboardManager.addPrimaryClipChangedListener()</item>
+    </string-array>
 </resources>

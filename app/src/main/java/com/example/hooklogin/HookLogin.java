@@ -75,12 +75,52 @@ public class HookLogin implements IXposedHookLoadPackage {
                 new XC_MethodHook() {
                     @Override
                     protected void beforeHookedMethod(MethodHookParam param) {
-                        XposedBridge.log("调用getDeviceId(int)获取了imei");
+                        XposedBridge.log("调用getDeviceId(int)获取了deviceId");
                     }
 
                     @Override
                     protected void afterHookedMethod(MethodHookParam param) throws Throwable {
-                        XposedBridge.log("调用getDeviceId(int)获取了imei完成 " + lpparam.processName);
+                        XposedBridge.log("调用getDeviceId(int)获取了deviceId完成 " + lpparam.processName);
+                        XposedBridge.log(getMethodStack());
+                        super.afterHookedMethod(param);
+                    }
+                }
+        );
+
+        XposedHelpers.findAndHookMethod(
+                android.telephony.TelephonyManager.class.getName(),
+                lpparam.classLoader,
+                "getImei",
+                int.class,
+                new XC_MethodHook() {
+                    @Override
+                    protected void beforeHookedMethod(MethodHookParam param) {
+                        XposedBridge.log("调用getImei(int)获取了imei");
+                    }
+
+                    @Override
+                    protected void afterHookedMethod(MethodHookParam param) throws Throwable {
+                        XposedBridge.log("调用getImei(int)获取了imei完成 " + lpparam.processName);
+                        XposedBridge.log(getMethodStack());
+                        super.afterHookedMethod(param);
+                    }
+                }
+        );
+
+        XposedHelpers.findAndHookMethod(
+                android.telephony.TelephonyManager.class.getName(),
+                lpparam.classLoader,
+                "getMeid",
+                int.class,
+                new XC_MethodHook() {
+                    @Override
+                    protected void beforeHookedMethod(MethodHookParam param) {
+                        XposedBridge.log("调用getMeid(int)获取了meid");
+                    }
+
+                    @Override
+                    protected void afterHookedMethod(MethodHookParam param) throws Throwable {
+                        XposedBridge.log("调用getMeid(int)获取了meid完成 " + lpparam.processName);
                         XposedBridge.log(getMethodStack());
                         super.afterHookedMethod(param);
                     }
