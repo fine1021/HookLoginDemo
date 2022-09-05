@@ -439,6 +439,44 @@ public class HookLogin implements IXposedHookLoadPackage {
                     }
                 }
         );
+
+        XposedHelpers.findAndHookMethod(
+                android.telephony.TelephonyManager.class.getName(),
+                lpparam.classLoader,
+                "getSimSerialNumber",
+                new XC_MethodHook() {
+                    @Override
+                    protected void beforeHookedMethod(MethodHookParam param) {
+                        XposedBridge.log("调用getSimSerialNumber获取了SIM卡序列号");
+                    }
+
+                    @Override
+                    protected void afterHookedMethod(MethodHookParam param) throws Throwable {
+                        XposedBridge.log("调用getSimSerialNumber获取了SIM卡序列号完成 " + lpparam.processName);
+                        XposedBridge.log(getMethodStack());
+                        super.afterHookedMethod(param);
+                    }
+                }
+        );
+
+        XposedHelpers.findAndHookMethod(
+                android.os.Build.class.getName(),
+                lpparam.classLoader,
+                "getSerial",
+                new XC_MethodHook() {
+                    @Override
+                    protected void beforeHookedMethod(MethodHookParam param) {
+                        XposedBridge.log("调用getSerial获取了设备序列号");
+                    }
+
+                    @Override
+                    protected void afterHookedMethod(MethodHookParam param) throws Throwable {
+                        XposedBridge.log("调用getSerial获取了设备序列号完成 " + lpparam.processName);
+                        XposedBridge.log(getMethodStack());
+                        super.afterHookedMethod(param);
+                    }
+                }
+        );
     }
 
     private String getMethodStack() {

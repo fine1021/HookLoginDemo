@@ -17,5 +17,7 @@
         <item>ActivityManager.getRunningAppProcesses()</item>
         <item>ClipboardManager.getPrimaryClip()</item>
         <item>ClipboardManager.addPrimaryClipChangedListener()</item>
+        <item>Build.getSerial()</item>
+        <item>TelephonyManager.getSimSerialNumber()</item>
     </string-array>
 </resources>
