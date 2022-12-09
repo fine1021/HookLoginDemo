@@ -19,5 +19,7 @@
         <item>ClipboardManager.addPrimaryClipChangedListener()</item>
         <item>Build.getSerial()</item>
         <item>TelephonyManager.getSimSerialNumber()</item>
+        <item>PackageManager.getPackageInfo()</item>
+        <item>PackageManager.getPackageInfoAsUser()</item>
     </string-array>
 </resources>

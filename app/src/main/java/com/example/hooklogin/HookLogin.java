@@ -3,7 +3,13 @@ package com.example.hooklogin;
 import android.content.ClipboardManager;
 import android.content.ContentResolver;
 import android.location.LocationManager;
+import android.net.wifi.WifiInfo;
+import android.os.Build;
+import android.provider.Settings;
+import android.telephony.TelephonyManager;
 import android.util.Log;
+
+import java.net.NetworkInterface;
 
 import de.robv.android.xposed.IXposedHookLoadPackage;
 import de.robv.android.xposed.XC_MethodHook;
@@ -50,7 +56,7 @@ public class HookLogin implements IXposedHookLoadPackage {
 
         //固定格式
         XposedHelpers.findAndHookMethod(
-                android.telephony.TelephonyManager.class.getName(), // 需要hook的方法所在类的完整类名
+                TelephonyManager.class.getName(), // 需要hook的方法所在类的完整类名
                 lpparam.classLoader,                            // 类加载器，固定这么写就行了
                 "getDeviceId",                     // 需要hook的方法名
                 new XC_MethodHook() {
@@ -68,7 +74,7 @@ public class HookLogin implements IXposedHookLoadPackage {
                 }
         );
         XposedHelpers.findAndHookMethod(
-                android.telephony.TelephonyManager.class.getName(),
+                TelephonyManager.class.getName(),
                 lpparam.classLoader,
                 "getDeviceId",
                 int.class,
@@ -88,7 +94,7 @@ public class HookLogin implements IXposedHookLoadPackage {
         );
 
         XposedHelpers.findAndHookMethod(
-                android.telephony.TelephonyManager.class.getName(),
+                TelephonyManager.class.getName(),
                 lpparam.classLoader,
                 "getImei",
                 int.class,
@@ -108,7 +114,7 @@ public class HookLogin implements IXposedHookLoadPackage {
         );
 
         XposedHelpers.findAndHookMethod(
-                android.telephony.TelephonyManager.class.getName(),
+                TelephonyManager.class.getName(),
                 lpparam.classLoader,
                 "getMeid",
                 int.class,
@@ -140,7 +146,7 @@ public class HookLogin implements IXposedHookLoadPackage {
 //            );
 
         XposedHelpers.findAndHookMethod(
-                android.telephony.TelephonyManager.class.getName(),
+                TelephonyManager.class.getName(),
                 lpparam.classLoader,
                 "getSubscriberId",
                 int.class,
@@ -160,7 +166,7 @@ public class HookLogin implements IXposedHookLoadPackage {
         );
 
         XposedHelpers.findAndHookMethod(
-                android.net.wifi.WifiInfo.class.getName(),
+                WifiInfo.class.getName(),
                 lpparam.classLoader,
                 "getMacAddress",
                 new XC_MethodHook() {
@@ -179,7 +185,7 @@ public class HookLogin implements IXposedHookLoadPackage {
         );
 
         XposedHelpers.findAndHookMethod(
-                java.net.NetworkInterface.class.getName(),
+                NetworkInterface.class.getName(),
                 lpparam.classLoader,
                 "getHardwareAddress",
                 new XC_MethodHook() {
@@ -198,7 +204,7 @@ public class HookLogin implements IXposedHookLoadPackage {
         );
 
         XposedHelpers.findAndHookMethod(
-                android.provider.Settings.Secure.class.getName(),
+                Settings.Secure.class.getName(),
                 lpparam.classLoader,
                 "getStringForUser",
                 ContentResolver.class,
@@ -383,6 +389,49 @@ public class HookLogin implements IXposedHookLoadPackage {
         );
 
         XposedHelpers.findAndHookMethod(
+                "android.app.ApplicationPackageManager",
+                lpparam.classLoader,
+                "getPackageInfo",
+                String.class,
+                int.class,
+                new XC_MethodHook() {
+                    @Override
+                    protected void beforeHookedMethod(MethodHookParam param) {
+                        XposedBridge.log("调用了getPackageInfo");
+                    }
+
+                    @Override
+                    protected void afterHookedMethod(MethodHookParam param) throws Throwable {
+                        XposedBridge.log("调用了getPackageInfo完成 " + lpparam.processName);
+                        XposedBridge.log(getMethodStack());
+                        super.afterHookedMethod(param);
+                    }
+                }
+        );
+
+//        XposedHelpers.findAndHookMethod(
+//                "android.app.ApplicationPackageManager",
+//                lpparam.classLoader,
+//                "getPackageInfoAsUser",
+//                String.class,
+//                int.class,
+//                int.class,
+//                new XC_MethodHook() {
+//                    @Override
+//                    protected void beforeHookedMethod(MethodHookParam param) {
+//                        XposedBridge.log("调用了getPackageInfoAsUser");
+//                    }
+//
+//                    @Override
+//                    protected void afterHookedMethod(MethodHookParam param) throws Throwable {
+//                        XposedBridge.log("调用了getPackageInfoAsUser完成 " + lpparam.processName);
+//                        XposedBridge.log(getMethodStack());
+//                        super.afterHookedMethod(param);
+//                    }
+//                }
+//        );
+
+        XposedHelpers.findAndHookMethod(
                 "android.app.ActivityManager",
                 lpparam.classLoader,
                 "getRunningAppProcesses",
@@ -402,7 +451,7 @@ public class HookLogin implements IXposedHookLoadPackage {
         );
 
         XposedHelpers.findAndHookMethod(
-                android.content.ClipboardManager.class.getName(),
+                ClipboardManager.class.getName(),
                 lpparam.classLoader,
                 "getPrimaryClip",
                 new XC_MethodHook() {
@@ -421,7 +470,7 @@ public class HookLogin implements IXposedHookLoadPackage {
         );
 
         XposedHelpers.findAndHookMethod(
-                android.content.ClipboardManager.class.getName(),
+                ClipboardManager.class.getName(),
                 lpparam.classLoader,
                 "addPrimaryClipChangedListener",
                 ClipboardManager.OnPrimaryClipChangedListener.class,
@@ -441,7 +490,7 @@ public class HookLogin implements IXposedHookLoadPackage {
         );
 
         XposedHelpers.findAndHookMethod(
-                android.telephony.TelephonyManager.class.getName(),
+                TelephonyManager.class.getName(),
                 lpparam.classLoader,
                 "getSimSerialNumber",
                 new XC_MethodHook() {
@@ -460,7 +509,7 @@ public class HookLogin implements IXposedHookLoadPackage {
         );
 
         XposedHelpers.findAndHookMethod(
-                android.os.Build.class.getName(),
+                Build.class.getName(),
                 lpparam.classLoader,
                 "getSerial",
                 new XC_MethodHook() {
