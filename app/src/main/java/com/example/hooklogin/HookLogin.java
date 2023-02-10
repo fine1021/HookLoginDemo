@@ -81,7 +81,7 @@ public class HookLogin implements IXposedHookLoadPackage {
                 new XC_MethodHook() {
                     @Override
                     protected void beforeHookedMethod(MethodHookParam param) {
-                        XposedBridge.log("调用getDeviceId(int)获取了deviceId");
+                        XposedBridge.log("调用getDeviceId(int)获取了deviceId " + param.args[0]);
                     }
 
                     @Override
@@ -101,7 +101,7 @@ public class HookLogin implements IXposedHookLoadPackage {
                 new XC_MethodHook() {
                     @Override
                     protected void beforeHookedMethod(MethodHookParam param) {
-                        XposedBridge.log("调用getImei(int)获取了imei");
+                        XposedBridge.log("调用getImei(int)获取了imei " + param.args[0]);
                     }
 
                     @Override
@@ -121,7 +121,7 @@ public class HookLogin implements IXposedHookLoadPackage {
                 new XC_MethodHook() {
                     @Override
                     protected void beforeHookedMethod(MethodHookParam param) {
-                        XposedBridge.log("调用getMeid(int)获取了meid");
+                        XposedBridge.log("调用getMeid(int)获取了meid " + param.args[0]);
                     }
 
                     @Override
@@ -153,7 +153,7 @@ public class HookLogin implements IXposedHookLoadPackage {
                 new XC_MethodHook() {
                     @Override
                     protected void beforeHookedMethod(MethodHookParam param) {
-                        XposedBridge.log("调用getSubscriberId获取了imsi");
+                        XposedBridge.log("调用getSubscriberId获取了imsi " + param.args[0]);
                     }
 
                     @Override
@@ -317,7 +317,7 @@ public class HookLogin implements IXposedHookLoadPackage {
                 new XC_MethodHook() {
                     @Override
                     protected void beforeHookedMethod(MethodHookParam param) {
-                        XposedBridge.log("调用getInstalledPackages获取了应用安装列表");
+                        XposedBridge.log("调用getInstalledPackages获取了应用安装列表 " + param.args[0]);
                     }
 
                     @Override
@@ -397,7 +397,7 @@ public class HookLogin implements IXposedHookLoadPackage {
                 new XC_MethodHook() {
                     @Override
                     protected void beforeHookedMethod(MethodHookParam param) {
-                        XposedBridge.log("调用了getPackageInfo");
+                        XposedBridge.log("调用了getPackageInfo " + param.args[0]);
                     }
 
                     @Override
